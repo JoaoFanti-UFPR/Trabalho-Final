@@ -136,6 +136,93 @@ const double velocidadeConst[9] = {
     0.3048,             //pés por ssegundo -> m/s
 };
 
+const char distancia[26][20] = {
+    "Quilometro",               "Metro",
+    "Decimetro",                "Centimetro",
+    "Milimetro",                "Micrometro",
+    "Nanometro",                "Picometro",
+    "Milha",                    "Milha Nautica",
+    "Furlong",                  "Fathom",
+    "Jarda",                    "Pes",
+    "Polegadas",                "Li",
+    "Zhang",                    "Chi",
+    "Cun",                      "Fen",
+    "Lii",                      "Hao",
+    "Parsec",                   "Distância Lunar",
+    "Unidade Astronomica",      "Ano Luz"
+};
+
+const char massa[21][25] = {
+    "Tonelada",                 "Quilograma",               
+    "Grama",                    "Miligrama",                
+    "Micrograma",               "Quintal",                  
+    "Libra",                    "Onca",                     
+    "Quilate",                  "Grao",                     
+    "Tonelada Britanica",       "Tonelada Norte-Americana",
+    "Quintal Britanico",        "Quintal Norte-Americano",
+    "Pedra",                    "Dram",
+    "Dan",                      "Jin",
+    "Qian",                     "Liang",
+    "Jin (Taiwanes)"
+};
+
+const char area[18][20] = {
+    "Quilometro Quadrado",      "Metro Quadrado",
+    "Decimetro Quadrado",       "Centimetro Quadrado",
+    "Milimetro Quadrado",       "Micrometro Quadrado",
+    "Hectare",                  "Are",
+    "Acre",                     "Milha Quadrada",
+    "Jarda Quadrada",           "Pe Quadrado",
+    "Polegada Quadrada",        "Vara Quadrada",
+    "Qing",                     "Mu",
+    "Chi Quadrado",             "Cun Quadrado"
+};
+
+const char tempo[9][13] = {
+    "Anos",                      "Semanas",
+    "Dias",                      "Horas",
+    "Minutos",                   "Segundos",
+    "Milissegundos",             "Microsegundos",
+    "Picosegundos"
+};
+
+const char volume[13][20] = {
+    "Metro Cubico",             "Decimetro Cubico",
+    "Centimetro Cubico",        "Milimetro Cubico",
+    "Litro",                    "Hectolitro",
+    "Decilitro",                "Centilitro",
+    "Mililitro",                "Pe Cubico",
+    "Polegada Cubica",          "Jarda Cubica",
+    "Acre-pe"
+};
+
+const char velocidade[9][24] = {
+    "Velocidade da Luz",        "Mach",
+    "Metros por Segundo",       "Quilometros por Segundo",
+    "Quilometros por Hora",     "No",
+    "Milhas por Hora",          "Polegadas por Segundo",
+    "Pes por Segundo"
+};
+
+const char dados[12][9] = {
+    "Byte",                     "Kilobyte",
+    "Megabyte",                 "Gigabyte",
+    "Terabyte",                 "Petabyte",
+    "Bit",                      "Kilobit",
+    "Megabit",                  "Gigabit",
+    "Terabit",                  "Petabit"
+};
+
+const char temperatura[3][10] = {
+    "Celsius",                  "Farenheit",
+    "Kelvin"
+};
+
+const char sistemaNumerico[4][12] = {
+    "Binario",                  "Octal",
+    "Decimal",                  "Hexadecimal"
+};
+
 int uO, uD;                     //uO = unidadeOrigem / uD = unidadeDestino
 float valorO, valorD, valorM;   //valorO = valorOrigem / valorD = valorDestino
                                 //valorM = valorMedio
@@ -172,257 +259,174 @@ void printBinary(int n){
 }
 
 int main() {
-    int opcao, i;
+    int opcao, continuar, i;
 
-    char distancia[26][20] = {
-        "Quilometro",               "Metro",
-        "Decimetro",                "Centimetro",
-        "Milimetro",                "Micrometro",
-        "Nanometro",                "Picometro",
-        "Milha",                    "Milha Nautica",
-        "Furlong",                  "Fathom",
-        "Jarda",                    "Pes",
-        "Polegadas",                "Li",
-        "Zhang",                    "Chi",
-        "Cun",                      "Fen",
-        "Lii",                      "Hao",
-        "Parsec",                   "Distância Lunar",
-        "Unidade Astronomica",      "Ano Luz"
-    };
-
-    char massa[21][25] = {
-        "Tonelada",                 "Quilograma",               
-        "Grama",                    "Miligrama",                
-        "Micrograma",               "Quintal",                  
-        "Libra",                    "Onca",                     
-        "Quilate",                  "Grao",                     
-        "Tonelada Britanica",       "Tonelada Norte-Americana",
-        "Quintal Britanico",        "Quintal Norte-Americano",
-        "Pedra",                    "Dram",
-        "Dan",                      "Jin",
-        "Qian",                     "Liang",
-        "Jin (Taiwanes)"
-    };
-
-    char area[18][20] = {
-        "Quilometro Quadrado",      "Metro Quadrado",
-        "Decimetro Quadrado",       "Centimetro Quadrado",
-        "Milimetro Quadrado",       "Micrometro Quadrado",
-        "Hectare",                  "Are",
-        "Acre",                     "Milha Quadrada",
-        "Jarda Quadrada",           "Pe Quadrado",
-        "Polegada Quadrada",        "Vara Quadrada",
-        "Qing",                     "Mu",
-        "Chi Quadrado",             "Cun Quadrado"
-    };
-
-    char tempo[9][13] = {
-        "Anos",                      "Semanas",
-        "Dias",                      "Horas",
-        "Minutos",                   "Segundos",
-        "Milissegundos",             "Microsegundos",
-        "Picosegundos"
-    };
-
-    char volume[13][20] = {
-        "Metro Cubico",             "Decimetro Cubico",
-        "Centimetro Cubico",        "Milimetro Cubico",
-        "Litro",                    "Hectolitro",
-        "Decilitro",                "Centilitro",
-        "Mililitro",                "Pe Cubico",
-        "Polegada Cubica",          "Jarda Cubica",
-        "Acre-pe"
-    };
-
-    char velocidade[9][24] = {
-        "Velocidade da Luz",        "Mach",
-        "Metros por Segundo",       "Quilometros por Segundo",
-        "Quilometros por Hora",     "No",
-        "Milhas por Hora",          "Polegadas por Segundo",
-        "Pes por Segundo"
-    };
-
-    char dados[12][9] = {
-        "Byte",                     "Kilobyte",
-        "Megabyte",                 "Gigabyte",
-        "Terabyte",                 "Petabyte",
-        "Bit",                      "Kilobit",
-        "Megabit",                  "Gigabit",
-        "Terabit",                  "Petabit"
-    };
-
-    char temperatura[3][10] = {
-        "Celsius",                  "Farenheit",
-        "Kelvin"
-    };
-
-    char sistemaNumerico[4][12] = {
-        "Binario",                  "Octal",
-        "Decimal",                  "Hexadecimal"
-    };
-
-    printf("Conversor\n");
-    printf("Digite o numero correspondente a operacao desejada:\n\n");
-    printf("1-Distancia         6-Volume\n");
-    printf("2-Massa             7-Velocidade\n");
-    printf("3-Area              8-Temperatura\n");
-    printf("4-Tempo             9-Sistema Numerico\n");
-    printf("5-Dados\n");
-    printf("\nDigite sua opcao (0 para sair): ");
-    scanf("%d", &opcao);
+    do{
+        printf("Conversor\n");
+        printf("Digite o numero correspondente a operacao desejada:\n\n");
+        printf("1-Distancia         6-Volume\n");
+        printf("2-Massa             7-Velocidade\n");
+        printf("3-Area              8-Temperatura\n");
+        printf("4-Tempo             9-Sistema Numerico\n");
+        printf("5-Dados\n");
+        printf("\nDigite sua opcao (0 para sair): ");
+        scanf("%d", &opcao);
 
 
-    /*  Não funciona porque o vetor de strings muda pra cada
-        opção selecionada. Talvez dê pra resolver colocando
-        eles em outro vetor (uma matriz de char com 3 dimensões).
+        /*  Não funciona porque o vetor de strings muda pra cada
+            opção selecionada. Talvez dê pra resolver colocando
+            eles em outro vetor (uma matriz de char com 3 dimensões).
 
-    if(opcao < 1 || opcao > 8){
-        return 0;
-    }
-    clrscr();
-    printf("Digite o numero correspondente a unidade de origem:\n\n");
-    for(i=0; i<opcaoVetor[opcao]; i++){
-        printf("%d-%s\n", i+1, distancia[i]);
-    }
-    selecionar();
-    */
-
-
-    switch(opcao){
-        case 1:     //Distância
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<26; i++){
-                printf("%d-%s\n", i+1, distancia[i]);
-            }
-            selecionar();
-            valorM = valorO * distanciaConst[uO];
-            valorD = valorM / distanciaConst[uD];
-            printf("%.16g %s correspondem a %.16g %s.", valorO, distancia[uO], valorD, distancia[uD]);
-            break;
-        case 2:     //Massa
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<21; i++){
-                printf("%d-%s\n", i+1, massa[i]);
-            }
-            selecionar();
-            valorM = valorO * massaConst[uO];
-            valorD = valorM / massaConst[uD];
-            printf("%.16g %s correspondem a %.16g %s.", valorO, massa[uO], valorD, massa[uD]);
-            break;
-        case 3:     //Área
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<18; i++){
-                printf("%d-%s\n", i+1, area[i]);
-            }
-            selecionar();
-            valorM = valorO * areaConst[uO];
-            valorD = valorM / areaConst[uD];
-            printf("%.16g %s correspondem a %.16g %s.", valorO, area[uO], valorD, area[uD]);
-            break;
-        case 4:     //Tempo
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<9; i++){
-                printf("%d-%s\n", i+1, tempo[i]);
-            }
-            selecionar();
-            valorM = valorO * tempoConst[uO];
-            valorD = valorM / tempoConst[uD];
-            printf("%.16g %s correspondem a %.16g %s.", valorO, tempo[uO], valorD, tempo[uD]);
-            break;
-        case 5:     //Dados
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<12; i++){
-                printf("%d-%s\n", i+1, dados[i]);
-            }
-            selecionar();
-            valorM = valorO * dadosConst[uO];
-            valorD = valorM / dadosConst[uD];
-            printf("%.16g %s correspondem a %.16g %s.", valorO, dados[uO], valorD, dados[uD]);
-            break;
-        case 6:     //Volume
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<9; i++){
-                printf("%d-%s\n", i+1, volume[i]);
-            }
-            selecionar();
-            valorM = valorO * volumeConst[uO];
-            valorD = valorM / volumeConst[uD];
-            printf("%.16g %s correspondem a %.16g %s.", valorO, volume[uO], valorD, volume[uD]);
-            break;
-        case 7:     //Velocidade
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<9; i++){
-                printf("%d-%s\n", i+1, velocidade[i]);
-            }
-            selecionar();
-            valorM = valorO * velocidadeConst[uO];
-            valorD = valorM / velocidadeConst[uD];
-            printf("%.16g %s correspondem a %.16g %s.", valorO, velocidade[uO], valorD, velocidade[uD]);
-            break;
-        case 8:     //Temperatura
-            clrscr();
-            printf("Digite o numero correspondente a unidade de origem:\n\n");
-            for(i=0; i<3; i++){
-                printf("%d-%s\n", i+1, temperatura[i]);
-            }
-            selecionar();
-            if (uO == 0){   //De Celsius
-                if (uD == 0) valorD = valorO;   //Para Celsius
-                if (uD == 1) valorD = (valorO * 1.8) + 32;  //Para Farenheit
-                if (uD == 2) valorD = valorO + 273.15;  //Para Kelvin
-            }else if (uO == 1){ //De Farenheit
-                if (uD == 0) valorD = (valorO - 32) / 1.8;  //Para Celsius
-                if (uD == 1) valorD = valorO;   //Para Farenheit
-                if (uD == 2) valorD = (valorO - 32) / 1.8 + 273.15; //Para Kelvin
-            }else if (uO == 2){ //De Kelvin
-                if (uD == 0) valorD = valorO - 273.15;  //Para Celsius
-                if (uD == 1) valorD = (valorO - 273.15) * 1.8 + 32; //Para Farenheit
-                if (uD == 2) valorD = valorO;   //Para Kelvin
-            }
-            printf("%.16g %s e igual a %.16g %s", valorO, temperatura[uO], valorD, temperatura[uD]);
-            break;
-        case 9:     //Sistema Numérico
-            clrscr();
-            printf("Digite o numero correspondente a base para a qual quer converter:\n\n");
-            for (i = 0; i < 4; i++) {
-                printf("%d-%s\n", i + 1, sistemaNumerico[i]);
-            }
-            printf("\nEscolha a base:\n");
-            scanf("%d", &uO);
-            printf("\nDigite o numero, inteiro e em base decimal, a ser convertido: ");
-            scanf("%d", &uD);   //Usando uD porque é inteiro, com valorO não funciona.
-            switch (uO - 1) {
-                case 0: // Binário
-                    printf("\n%d em base 2 e ", uD);
-                    printBinary(uD);
-                    break;
-                case 1: // Octal
-                    printf("\n%d em base 8 e %o", uD, uD);
-                    break;
-                case 2: // Decimal
-                    printf("\n%d em base 10 e %d", uD, uD);
-                    break;
-                case 3: // Hexadecimal
-                    printf("\n%d em base 16 e %X", uD, uD);
-                    break;
-                default:
-                    printf("ERRO %d", uD);
-            }
-            printf("\n");
-            break;
-        default:
+        if(opcao < 1 || opcao > 8){
             return 0;
-            break;
-    }
+        }
+        clrscr();
+        printf("Digite o numero correspondente a unidade de origem:\n\n");
+        for(i=0; i<opcaoVetor[opcao]; i++){
+            printf("%d-%s\n", i+1, distancia[i]);
+        }
+        selecionar();
+        */
 
-    scanf("%d", opcao);
+
+        switch(opcao){
+            case 1:     //Distância
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<26; i++){
+                    printf("%d-%s\n", i+1, distancia[i]);
+                }
+                selecionar();
+                valorM = valorO * distanciaConst[uO];
+                valorD = valorM / distanciaConst[uD];
+                printf("%.16g %s correspondem a %.16g %s.", valorO, distancia[uO], valorD, distancia[uD]);
+                break;
+            case 2:     //Massa
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<21; i++){
+                    printf("%d-%s\n", i+1, massa[i]);
+                }
+                selecionar();
+                valorM = valorO * massaConst[uO];
+                valorD = valorM / massaConst[uD];
+                printf("%.16g %s correspondem a %.16g %s.", valorO, massa[uO], valorD, massa[uD]);
+                break;
+            case 3:     //Área
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<18; i++){
+                    printf("%d-%s\n", i+1, area[i]);
+                }
+                selecionar();
+                valorM = valorO * areaConst[uO];
+                valorD = valorM / areaConst[uD];
+                printf("%.16g %s correspondem a %.16g %s.", valorO, area[uO], valorD, area[uD]);
+                break;
+            case 4:     //Tempo
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<9; i++){
+                    printf("%d-%s\n", i+1, tempo[i]);
+                }
+                selecionar();
+                valorM = valorO * tempoConst[uO];
+                valorD = valorM / tempoConst[uD];
+                printf("%.16g %s correspondem a %.16g %s.", valorO, tempo[uO], valorD, tempo[uD]);
+                break;
+            case 5:     //Dados
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<12; i++){
+                    printf("%d-%s\n", i+1, dados[i]);
+                }
+                selecionar();
+                valorM = valorO * dadosConst[uO];
+                valorD = valorM / dadosConst[uD];
+                printf("%.16g %s correspondem a %.16g %s.", valorO, dados[uO], valorD, dados[uD]);
+                break;
+            case 6:     //Volume
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<9; i++){
+                    printf("%d-%s\n", i+1, volume[i]);
+                }
+                selecionar();
+                valorM = valorO * volumeConst[uO];
+                valorD = valorM / volumeConst[uD];
+                printf("%.16g %s correspondem a %.16g %s.", valorO, volume[uO], valorD, volume[uD]);
+                break;
+            case 7:     //Velocidade
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<9; i++){
+                    printf("%d-%s\n", i+1, velocidade[i]);
+                }
+                selecionar();
+                valorM = valorO * velocidadeConst[uO];
+                valorD = valorM / velocidadeConst[uD];
+                printf("%.16g %s correspondem a %.16g %s.", valorO, velocidade[uO], valorD, velocidade[uD]);
+                break;
+            case 8:     //Temperatura
+                clrscr();
+                printf("Digite o numero correspondente a unidade de origem:\n\n");
+                for(i=0; i<3; i++){
+                    printf("%d-%s\n", i+1, temperatura[i]);
+                }
+                selecionar();
+                if (uO == 0){   //De Celsius
+                    if (uD == 0) valorD = valorO;   //Para Celsius
+                    if (uD == 1) valorD = (valorO * 1.8) + 32;  //Para Farenheit
+                    if (uD == 2) valorD = valorO + 273.15;  //Para Kelvin
+                }else if (uO == 1){ //De Farenheit
+                    if (uD == 0) valorD = (valorO - 32) / 1.8;  //Para Celsius
+                    if (uD == 1) valorD = valorO;   //Para Farenheit
+                    if (uD == 2) valorD = (valorO - 32) / 1.8 + 273.15; //Para Kelvin
+                }else if (uO == 2){ //De Kelvin
+                    if (uD == 0) valorD = valorO - 273.15;  //Para Celsius
+                    if (uD == 1) valorD = (valorO - 273.15) * 1.8 + 32; //Para Farenheit
+                    if (uD == 2) valorD = valorO;   //Para Kelvin
+                }
+                printf("%.16g %s e igual a %.16g %s", valorO, temperatura[uO], valorD, temperatura[uD]);
+                break;
+            case 9:     //Sistema Numérico
+                clrscr();
+                printf("Digite o numero correspondente a base para a qual quer converter:\n\n");
+                for (i = 0; i < 4; i++) {
+                    printf("%d-%s\n", i + 1, sistemaNumerico[i]);
+                }
+                printf("\nEscolha a base:\n");
+                scanf("%d", &uO);
+                printf("\nDigite o numero, inteiro e em base decimal, a ser convertido: ");
+                scanf("%d", &uD);   //Usando uD porque é inteiro, com valorO não funciona.
+                switch (uO - 1) {
+                    case 0: // Binário
+                        printf("\n%d em base 2 e ", uD);
+                        printBinary(uD);
+                        break;
+                    case 1: // Octal
+                        printf("\n%d em base 8 e %o", uD, uD);
+                        break;
+                    case 2: // Decimal
+                        printf("\n%d em base 10 e %d", uD, uD);
+                        break;
+                    case 3: // Hexadecimal
+                        printf("\n%d em base 16 e %X", uD, uD);
+                        break;
+                    default:
+                        printf("ERRO %d", uD);
+                }
+                printf("\n");
+                break;
+            default:
+                return 0;
+                break;
+        }
+
+        printf("\nDeseja fazer uma nova conversao? 1-sim     0-nao\n>");
+        scanf("%d", &continuar);
+        clrscr();
+    }while(continuar);
 
     return 0;
 }
