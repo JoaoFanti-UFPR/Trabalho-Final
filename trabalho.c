@@ -148,7 +148,7 @@ const char distancia[26][20] = {
     "Zhang",                    "Chi",
     "Cun",                      "Fen",
     "Lii",                      "Hao",
-    "Parsec",                   "Distância Lunar",
+    "Parsec",                   "Distancia Lunar",
     "Unidade Astronomica",      "Ano Luz"
 };
 
@@ -258,185 +258,173 @@ void printBinary(int n){
 }
 
 int main() {
-    int opcao, continuar, i;
+    int opcao, continuar, i, continuar2;
 
     FILE *fptr;
     fptr = fopen("log.txt", "w");
 
 
     do{
-        printf("Conversor\n");
-        printf("Digite o numero correspondente a operacao desejada:\n\n");
-        printf("1-Distancia         6-Volume\n");
-        printf("2-Massa             7-Velocidade\n");
-        printf("3-Area              8-Temperatura\n");
-        printf("4-Tempo             9-Sistema Numerico\n");
-        printf("5-Dados\n");
-        printf("\nDigite sua opcao (0 para sair): ");
-        scanf("%d", &opcao);
+        do{
+            continuar2 = 0;
 
+            printf("Digite o numero correspondente a operacao desejada:\n\n");
+            printf("1-Distancia         6-Volume\n");
+            printf("2-Massa             7-Velocidade\n");
+            printf("3-Area              8-Temperatura\n");
+            printf("4-Tempo             9-Sistema Numerico\n");
+            printf("5-Dados\n");
+            printf("\nDigite sua opcao (0 para sair): ");
+            scanf("%d", &opcao);
 
-        /*  Não funciona porque o vetor de strings muda pra cada
-            opção selecionada. Talvez dê pra resolver colocando
-            eles em outro vetor (uma matriz de char com 3 dimensões).
+            switch(opcao){
+                case 1:     //Distância
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<26; i++){
+                        printf("%d-%s\n", i+1, distancia[i]);
+                    }
+                    selecionar();
+                    valorM = valorO * distanciaConst[uO];
+                    valorD = valorM / distanciaConst[uD];
+                    printf("%.16g %s correspondem a %.16g %s.", valorO, distancia[uO], valorD, distancia[uD]);
+                    fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, distancia[uO], valorD, distancia[uD]);
+                    break;
+                case 2:     //Massa
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<21; i++){
+                        printf("%d-%s\n", i+1, massa[i]);
+                    }
+                    selecionar();
+                    valorM = valorO * massaConst[uO];
+                    valorD = valorM / massaConst[uD];
 
-        if(opcao < 1 || opcao > 8){
-            return 0;
-        }
-        clrscr();
-        printf("Digite o numero correspondente a unidade de origem:\n\n");
-        for(i=0; i<opcaoVetor[opcao]; i++){
-            printf("%d-%s\n", i+1, distancia[i]);
-        }
-        selecionar();
-        */
-
-
-        switch(opcao){
-            case 1:     //Distância
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<26; i++){
-                    printf("%d-%s\n", i+1, distancia[i]);
-                }
-                selecionar();
-                valorM = valorO * distanciaConst[uO];
-                valorD = valorM / distanciaConst[uD];
-                printf("%.16g %s correspondem a %.16g %s.", valorO, distancia[uO], valorD, distancia[uD]);
-                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, distancia[uO], valorD, distancia[uD]);
-                break;
-            case 2:     //Massa
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<21; i++){
-                    printf("%d-%s\n", i+1, massa[i]);
-                }
-                selecionar();
-                valorM = valorO * massaConst[uO];
-                valorD = valorM / massaConst[uD];
-
-                printf("%.16g %s correspondem a %.16g %s.", valorO, massa[uO], valorD, massa[uD]);
-                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, massa[uO], valorD, massa[uD]);
-                break;
-            case 3:     //Área
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<18; i++){
-                    printf("%d-%s\n", i+1, area[i]);
-                }
-                selecionar();
-                valorM = valorO * areaConst[uO];
-                valorD = valorM / areaConst[uD];
-                printf("%.16g %s correspondem a %.16g %s.", valorO, area[uO], valorD, area[uD]);
-                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, area[uO], valorD, area[uD]);
-                break;
-            case 4:     //Tempo
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<9; i++){
-                    printf("%d-%s\n", i+1, tempo[i]);
-                }
-                selecionar();
-                valorM = valorO * tempoConst[uO];
-                valorD = valorM / tempoConst[uD];
-                printf("%.16g %s correspondem a %.16g %s.", valorO, tempo[uO], valorD, tempo[uD]);
-                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, tempo[uO], valorD, tempo[uD]);
-                break;
-            case 5:     //Dados
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<12; i++){
-                    printf("%d-%s\n", i+1, dados[i]);
-                }
-                selecionar();
-                valorM = valorO * dadosConst[uO];
-                valorD = valorM / dadosConst[uD];
-                printf("%.16g %s correspondem a %.16g %s.", valorO, dados[uO], valorD, dados[uD]);
-                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, dados[uO], valorD, dados[uD]);
-                break;
-            case 6:     //Volume
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<9; i++){
-                    printf("%d-%s\n", i+1, volume[i]);
-                }
-                selecionar();
-                valorM = valorO * volumeConst[uO];
-                valorD = valorM / volumeConst[uD];
-                printf("%.16g %s correspondem a %.16g %s.", valorO, volume[uO], valorD, volume[uD]);
-                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, volume[uO], valorD, volume[uD]);
-                break;
-            case 7:     //Velocidade
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<9; i++){
-                    printf("%d-%s\n", i+1, velocidade[i]);
-                }
-                selecionar();
-                valorM = valorO * velocidadeConst[uO];
-                valorD = valorM / velocidadeConst[uD];
-                printf("%.16g %s correspondem a %.16g %s.", valorO, velocidade[uO], valorD, velocidade[uD]);
-                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, velocidade[uO], valorD, velocidade[uD]);
-                break;
-            case 8:     //Temperatura
-                clrscr();
-                printf("Digite o numero correspondente a unidade de origem:\n\n");
-                for(i=0; i<3; i++){
-                    printf("%d-%s\n", i+1, temperatura[i]);
-                }
-                selecionar();
-                if (uO == 0){   //De Celsius
-                    if (uD == 0) valorD = valorO;   //Para Celsius
-                    if (uD == 1) valorD = (valorO * 1.8) + 32;  //Para Farenheit
-                    if (uD == 2) valorD = valorO + 273.15;  //Para Kelvin
-                }else if (uO == 1){ //De Farenheit
-                    if (uD == 0) valorD = (valorO - 32) / 1.8;  //Para Celsius
-                    if (uD == 1) valorD = valorO;   //Para Farenheit
-                    if (uD == 2) valorD = (valorO - 32) / 1.8 + 273.15; //Para Kelvin
-                }else if (uO == 2){ //De Kelvin
-                    if (uD == 0) valorD = valorO - 273.15;  //Para Celsius
-                    if (uD == 1) valorD = (valorO - 273.15) * 1.8 + 32; //Para Farenheit
-                    if (uD == 2) valorD = valorO;   //Para Kelvin
-                }
-                printf("%.16g %s e igual a %.16g %s", valorO, temperatura[uO], valorD, temperatura[uD]);
-                fprintf(fptr, "%.16g %s e igual a %.16g %s.\n", valorO, temperatura[uO], valorD, temperatura[uD]);
-                break;
-            case 9:     //Sistema Numérico
-                clrscr();
-                printf("Digite o numero correspondente a base para a qual quer converter:\n\n");
-                for (i = 0; i < 4; i++) {
-                    printf("%d-%s\n", i + 1, sistemaNumerico[i]);
-                }
-                printf("\nEscolha a base:\n");
-                scanf("%d", &uO);
-                printf("\nDigite o numero, inteiro e em base decimal, a ser convertido: ");
-                scanf("%d", &uD);   //Usando uD porque é inteiro, com valorO não funciona.
-                switch (uO - 1) {
-                    case 0: // Binário
-                        printf("\n%d em base 2 e ", uD);
-                        printBinary(uD);
-                        break;
-                    case 1: // Octal
-                        printf("\n%d em base 8 e %o", uD, uD);
-                        fprintf(fptr, "\n%d em base 8 e %o", uD, uD);
-                        break;
-                    case 2: // Decimal
-                        printf("\n%d em base 10 e %d", uD, uD);
-                        printf(fptr, "\n%d em base 10 e %d", uD, uD);
-                        break;
-                    case 3: // Hexadecimal
-                        printf("\n%d em base 16 e %X", uD, uD);
-                        fprintf(fptr, "\n%d em base 16 e %X", uD, uD);
-                        break;
-                    default:
-                        printf("ERRO %d", uD);
-                }
-                printf("\n");
-                break;
-            default:
-                return 0;
-                break;
-        }
+                    printf("%.16g %s correspondem a %.16g %s.", valorO, massa[uO], valorD, massa[uD]);
+                    fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, massa[uO], valorD, massa[uD]);
+                    break;
+                case 3:     //Área
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<18; i++){
+                        printf("%d-%s\n", i+1, area[i]);
+                    }
+                    selecionar();
+                    valorM = valorO * areaConst[uO];
+                    valorD = valorM / areaConst[uD];
+                    printf("%.16g %s correspondem a %.16g %s.", valorO, area[uO], valorD, area[uD]);
+                    fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, area[uO], valorD, area[uD]);
+                    break;
+                case 4:     //Tempo
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<9; i++){
+                        printf("%d-%s\n", i+1, tempo[i]);
+                    }
+                    selecionar();
+                    valorM = valorO * tempoConst[uO];
+                    valorD = valorM / tempoConst[uD];
+                    printf("%.16g %s correspondem a %.16g %s.", valorO, tempo[uO], valorD, tempo[uD]);
+                    fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, tempo[uO], valorD, tempo[uD]);
+                    break;
+                case 5:     //Dados
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<12; i++){
+                        printf("%d-%s\n", i+1, dados[i]);
+                    }
+                    selecionar();
+                    valorM = valorO * dadosConst[uO];
+                    valorD = valorM / dadosConst[uD];
+                    printf("%.16g %s correspondem a %.16g %s.", valorO, dados[uO], valorD, dados[uD]);
+                    fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, dados[uO], valorD, dados[uD]);
+                    break;
+                case 6:     //Volume
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<9; i++){
+                        printf("%d-%s\n", i+1, volume[i]);
+                    }
+                    selecionar();
+                    valorM = valorO * volumeConst[uO];
+                    valorD = valorM / volumeConst[uD];
+                    printf("%.16g %s correspondem a %.16g %s.", valorO, volume[uO], valorD, volume[uD]);
+                    fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, volume[uO], valorD, volume[uD]);
+                    break;
+                case 7:     //Velocidade
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<9; i++){
+                        printf("%d-%s\n", i+1, velocidade[i]);
+                    }
+                    selecionar();
+                    valorM = valorO * velocidadeConst[uO];
+                    valorD = valorM / velocidadeConst[uD];
+                    printf("%.16g %s correspondem a %.16g %s.", valorO, velocidade[uO], valorD, velocidade[uD]);
+                    fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, velocidade[uO], valorD, velocidade[uD]);
+                    break;
+                case 8:     //Temperatura
+                    clrscr();
+                    printf("Digite o numero correspondente a unidade de origem:\n\n");
+                    for(i=0; i<3; i++){
+                        printf("%d-%s\n", i+1, temperatura[i]);
+                    }
+                    selecionar();
+                    if (uO == 0){   //De Celsius
+                        if (uD == 0) valorD = valorO;   //Para Celsius
+                        if (uD == 1) valorD = (valorO * 1.8) + 32;  //Para Farenheit
+                        if (uD == 2) valorD = valorO + 273.15;  //Para Kelvin
+                    }else if (uO == 1){ //De Farenheit
+                        if (uD == 0) valorD = (valorO - 32) / 1.8;  //Para Celsius
+                        if (uD == 1) valorD = valorO;   //Para Farenheit
+                        if (uD == 2) valorD = (valorO - 32) / 1.8 + 273.15; //Para Kelvin
+                    }else if (uO == 2){ //De Kelvin
+                        if (uD == 0) valorD = valorO - 273.15;  //Para Celsius
+                        if (uD == 1) valorD = (valorO - 273.15) * 1.8 + 32; //Para Farenheit
+                        if (uD == 2) valorD = valorO;   //Para Kelvin
+                    }
+                    printf("%.16g %s e igual a %.16g %s", valorO, temperatura[uO], valorD, temperatura[uD]);
+                    fprintf(fptr, "%.16g %s e igual a %.16g %s.\n", valorO, temperatura[uO], valorD, temperatura[uD]);
+                    break;
+                case 9:     //Sistema Numérico
+                    clrscr();
+                    printf("Digite o numero correspondente a base para a qual quer converter:\n\n");
+                    for (i = 0; i < 4; i++) {
+                        printf("%d-%s\n", i + 1, sistemaNumerico[i]);
+                    }
+                    printf("\nEscolha a base:\n");
+                    scanf("%d", &uO);
+                    printf("\nDigite o numero, inteiro e em base decimal, a ser convertido: ");
+                    scanf("%d", &uD);   //Usando uD porque é inteiro, com valorO não funciona.
+                    switch (uO - 1) {
+                        case 0: // Binário
+                            printf("\n%d em base 2 e ", uD);
+                            printBinary(uD);
+                            break;
+                        case 1: // Octal
+                            printf("\n%d em base 8 e %o", uD, uD);
+                            fprintf(fptr, "\n%d em base 8 e %o", uD, uD);
+                            break;
+                        case 2: // Decimal
+                            printf("\n%d em base 10 e %d", uD, uD);
+                            fprintf(fptr, "\n%d em base 10 e %d", uD, uD);
+                            break;
+                        case 3: // Hexadecimal
+                            printf("\n%d em base 16 e %X", uD, uD);
+                            fprintf(fptr, "\n%d em base 16 e %X", uD, uD);
+                            break;
+                        default:
+                            printf("ERRO %d", uD);
+                    }
+                    printf("\n");
+                    break;
+                default:
+                    clrscr();
+                    printf("------------Entrada invalida------------\n");
+                    continuar2 = 1;
+                    break;
+            }
+        }while(continuar2 == 1);
 
         printf("\nDeseja fazer uma nova conversao? 1-sim     0-nao\n>");
         scanf("%d", &continuar);
