@@ -418,6 +418,9 @@ int main() {
                     }
                     printf("\n");
                     break;
+                case 0:
+                    return 0;
+                    break;
                 default:
                     clrscr();
                     printf("------------Entrada invalida------------\n");
