@@ -243,7 +243,6 @@ void selecionar(){
 
 void printBinary(int n){
     int startPrinting = 0; // Variável para identificar quando começar a imprimir
-    printf("Numero em binário: ");
     for (int i = sizeof(int) * 8 - 1; i >= 0; i--){
         if((n >> i) & 1) { 
             startPrinting = 1; // Comece a imprimir a partir do primeiro '1' encontrado
@@ -260,6 +259,10 @@ void printBinary(int n){
 
 int main() {
     int opcao, continuar, i;
+
+    FILE *fptr;
+    fptr = fopen("log.txt", "w");
+
 
     do{
         printf("Conversor\n");
@@ -300,6 +303,7 @@ int main() {
                 valorM = valorO * distanciaConst[uO];
                 valorD = valorM / distanciaConst[uD];
                 printf("%.16g %s correspondem a %.16g %s.", valorO, distancia[uO], valorD, distancia[uD]);
+                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, distancia[uO], valorD, distancia[uD]);
                 break;
             case 2:     //Massa
                 clrscr();
@@ -310,7 +314,9 @@ int main() {
                 selecionar();
                 valorM = valorO * massaConst[uO];
                 valorD = valorM / massaConst[uD];
+
                 printf("%.16g %s correspondem a %.16g %s.", valorO, massa[uO], valorD, massa[uD]);
+                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, massa[uO], valorD, massa[uD]);
                 break;
             case 3:     //Área
                 clrscr();
@@ -322,6 +328,7 @@ int main() {
                 valorM = valorO * areaConst[uO];
                 valorD = valorM / areaConst[uD];
                 printf("%.16g %s correspondem a %.16g %s.", valorO, area[uO], valorD, area[uD]);
+                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, area[uO], valorD, area[uD]);
                 break;
             case 4:     //Tempo
                 clrscr();
@@ -333,6 +340,7 @@ int main() {
                 valorM = valorO * tempoConst[uO];
                 valorD = valorM / tempoConst[uD];
                 printf("%.16g %s correspondem a %.16g %s.", valorO, tempo[uO], valorD, tempo[uD]);
+                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, tempo[uO], valorD, tempo[uD]);
                 break;
             case 5:     //Dados
                 clrscr();
@@ -344,6 +352,7 @@ int main() {
                 valorM = valorO * dadosConst[uO];
                 valorD = valorM / dadosConst[uD];
                 printf("%.16g %s correspondem a %.16g %s.", valorO, dados[uO], valorD, dados[uD]);
+                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, dados[uO], valorD, dados[uD]);
                 break;
             case 6:     //Volume
                 clrscr();
@@ -355,6 +364,7 @@ int main() {
                 valorM = valorO * volumeConst[uO];
                 valorD = valorM / volumeConst[uD];
                 printf("%.16g %s correspondem a %.16g %s.", valorO, volume[uO], valorD, volume[uD]);
+                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, volume[uO], valorD, volume[uD]);
                 break;
             case 7:     //Velocidade
                 clrscr();
@@ -366,6 +376,7 @@ int main() {
                 valorM = valorO * velocidadeConst[uO];
                 valorD = valorM / velocidadeConst[uD];
                 printf("%.16g %s correspondem a %.16g %s.", valorO, velocidade[uO], valorD, velocidade[uD]);
+                fprintf(fptr, "%.16g %s correspondem a %.16g %s.\n", valorO, velocidade[uO], valorD, velocidade[uD]);
                 break;
             case 8:     //Temperatura
                 clrscr();
@@ -388,6 +399,7 @@ int main() {
                     if (uD == 2) valorD = valorO;   //Para Kelvin
                 }
                 printf("%.16g %s e igual a %.16g %s", valorO, temperatura[uO], valorD, temperatura[uD]);
+                fprintf(fptr, "%.16g %s e igual a %.16g %s.\n", valorO, temperatura[uO], valorD, temperatura[uD]);
                 break;
             case 9:     //Sistema Numérico
                 clrscr();
@@ -406,12 +418,15 @@ int main() {
                         break;
                     case 1: // Octal
                         printf("\n%d em base 8 e %o", uD, uD);
+                        fprintf(fptr, "\n%d em base 8 e %o", uD, uD);
                         break;
                     case 2: // Decimal
                         printf("\n%d em base 10 e %d", uD, uD);
+                        printf(fptr, "\n%d em base 10 e %d", uD, uD);
                         break;
                     case 3: // Hexadecimal
                         printf("\n%d em base 16 e %X", uD, uD);
+                        fprintf(fptr, "\n%d em base 16 e %X", uD, uD);
                         break;
                     default:
                         printf("ERRO %d", uD);
@@ -427,6 +442,8 @@ int main() {
         scanf("%d", &continuar);
         clrscr();
     }while(continuar);
+
+    fclose(fptr);
 
     return 0;
 }
