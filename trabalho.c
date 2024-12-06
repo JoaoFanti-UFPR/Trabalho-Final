@@ -252,7 +252,7 @@ void printBinary(int n){
         }
     }
     if (!startPrinting){ 
-        printf("0"); // Para o caso de `n == 0`
+        printf("0"); // Para o caso de "n == 0"
     }
     printf("\n");
 }
