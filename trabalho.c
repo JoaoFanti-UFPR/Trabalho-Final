@@ -245,7 +245,7 @@ void printBinary(int n){
     int startPrinting = 0; // Variável para identificar quando começar a imprimir
     for (int i = sizeof(int) * 8 - 1; i >= 0; i--){
         if((n >> i) & 1) { 
-            startPrinting = 1; // Comece a imprimir a partir do primeiro '1' encontrado
+            startPrinting = 1; // Começa a imprimir a partir do primeiro '1' encontrado
         }
         if(startPrinting) {
             printf("%d", (n >> i) & 1);
